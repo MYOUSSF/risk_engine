@@ -26,8 +26,12 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
-from risk_engine.config import DB_PATH
+# Resolve DB path relative to this file — works locally and on Streamlit Cloud
+_HERE   = os.path.dirname(os.path.abspath(__file__))   # .../modules/
+_ROOT   = os.path.dirname(_HERE)                        # .../risk_engine/
+DB_PATH = os.path.join(_ROOT, "data", "market_data.db")
+
+sys.path.insert(0, os.path.join(_ROOT, ".."))           # keep package imports working
 
 # ── Page config ───────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -76,6 +80,19 @@ class _StdDev:
 
 @st.cache_resource
 def get_conn():
+    if not os.path.exists(DB_PATH):
+        st.error(
+            f"Database not found at `{DB_PATH}`.\n\n"
+            "Run the pipeline first:\n"
+            "```\n"
+            "python -m risk_engine.modules.data_ingestion\n"
+            "python -m risk_engine.modules.portfolio\n"
+            "python -m risk_engine.modules.var_engine\n"
+            "python -m risk_engine.modules.backtesting\n"
+            "python -m risk_engine.modules.stress_testing\n"
+            "```"
+        )
+        st.stop()
     conn = sqlite3.connect(DB_PATH, check_same_thread=False)
     conn.create_aggregate("STDEV", 1, _StdDev)
     return conn
