@@ -2,7 +2,7 @@
 
 A Python-based market risk analytics toolkit simulating a middle office workflow.
 Covers data ingestion, VaR (three methods), Basel backtesting, stress testing,
-and an interactive Streamlit dashboard.
+and an interactive [Streamlit dashboard](https://market-risk-engine.streamlit.app).
 
 ---
 
