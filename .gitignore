@@ -2,5 +2,9 @@
 __pycache__/
 **/__pycache__/
 *.pyc
-data/
+# Ignore everything under data/ except the DB file we want tracked
+/data/*
+!/data/
+!/data/market_data.db
 CLAUDE.md
+
