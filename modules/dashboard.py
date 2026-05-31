@@ -224,7 +224,7 @@ if page == "Portfolio Overview":
         })
 
     risk_df = pd.DataFrame(risk_rows)
-    st.dataframe(risk_df, width=True, hide_index=True)
+    st.dataframe(risk_df, width='stretch', hide_index=True)
 
 
 # ════════════════════════════════════════════════════════════════════════════
@@ -326,7 +326,7 @@ elif page == "VaR Analysis":
     avg.columns = ["Method", "Avg VaR 95% ($)", "Avg CVaR 95% ($)"]
     avg["Method"] = (avg["Method"].str.replace("_", " ").str.title()
                      .str.replace("Ewma", "EWMA"))
-    st.dataframe(avg, width=True, hide_index=True)
+    st.dataframe(avg, width='stretch', hide_index=True)
 
 
 # ════════════════════════════════════════════════════════════════════════════
@@ -420,7 +420,7 @@ elif page == "Backtesting":
 
     display_cols = ["Method","Exceptions","Rate","Kupiec p-val","Kupiec",
                     "Christoffersen p","Independence","π11 (cluster prob)"]
-    st.dataframe(tests[display_cols], width=True, hide_index=True)
+    st.dataframe(tests[display_cols], width='stretch', hide_index=True)
 
     # ── All breach dates ──────────────────────────────────────────────────────
     with st.expander("View all 99% VaR breach dates"):
@@ -433,12 +433,12 @@ elif page == "Backtesting":
             ORDER BY date
         """)
         breaches_detail.columns = ["Date","VaR Limit ($)","Actual Loss ($)","Excess ($)"]
-        st.dataframe(breaches_detail, width=True, hide_index=True)
+        st.dataframe(breaches_detail, width='stretch', hide_index=True)
 
 
 # ════════════════════════════════════════════════════════════════════════════
 # PAGE 4 — Stress Testing
-# ════════════════════════════════════════════════════════════════════════════
+# ══════════════════════════════════════
 elif page == "Stress Testing":
     st.title("Stress Testing")
     st.caption("Historical replays · Hypothetical shocks · Reverse stress test")
@@ -628,7 +628,7 @@ elif page == "Greeks":
         ]
         st.dataframe(
             pd.DataFrame(greeks_rows),
-            width=True,
+            width='stretch',
             hide_index=True,
         )
 
