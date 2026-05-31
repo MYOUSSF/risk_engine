@@ -1,0 +1,7 @@
+yfinance>=0.2.40
+pandas>=2.0
+numpy>=1.26
+openpyxl>=3.1        # Excel report generation (Module 6)
+streamlit>=1.35      # Dashboard (Module 6)
+scipy>=1.13          # Statistical distributions (Modules 3–5)
+matplotlib>=3.8      # Charts (Modules 3–5)

@@ -7,4 +7,4 @@ __pycache__/
 !/data/
 !/data/market_data.db
 CLAUDE.md
-
+.DS_Store
